@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#091426">
+  <meta name="description" content="ThinkMate AI turns your study material into notes, flashcards, mind maps and quizzes.">
+  <title>ThinkMate AI — Your study space</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" id="brand-home" href="#page-home" aria-label="ThinkMate home"><span class="brand-mark">t</span><span>thinkmate<span class="brand-ai">.ai</span></span></a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="nav-list" aria-label="Main navigation">
+        <button class="nav-item active" data-page="home"><span class="nav-icon">⌂</span>Overview</button>
+        <button class="nav-item" data-page="library"><span class="nav-icon">▤</span>My library <span class="nav-count" id="library-count">0</span></button>
+        <button class="nav-item" data-page="study"><span class="nav-icon">✦</span>Study room</button>
+        <button class="nav-item" data-page="progress"><span class="nav-icon">◷</span>My progress</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="local-note"><span class="live-dot"></span><div><strong>Your private study space</strong><p>Saved on this device</p></div></div>
+        <button class="profile-chip" id="clear-data" aria-label="Clear local study space"><span class="avatar">S</span><span><strong>Study space</strong><small>Local workspace</small></span><span class="more">↻</span></button>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar"><button class="mobile-menu" id="mobile-menu" aria-label="Open menu">☰</button><div class="breadcrumb">My workspace <span>/</span> <strong id="crumb">Overview</strong></div><div class="topbar-right"><span class="offline-pill"><i></i> Private & local</span><button class="icon-button" id="theme-toggle" aria-label="Toggle color theme">◐</button></div></header>
+
+      <section class="page active" id="page-home">
+        <div class="welcome-row"><div><div class="eyebrow"><span class="sparkle">✦</span> YOUR PERSONAL LEARNING SPACE</div><h1>Make learning <span class="gradient-text">click.</span></h1><p class="lead">Turn what you're studying into a plan that actually sticks.</p></div><div class="date-chip" id="today-label"></div></div>
+        <div class="hero-card"><div class="hero-copy"><span class="hero-kicker">YOUR NEXT STUDY SESSION</span><h2>One small step.<br><em>A lot more clarity.</em></h2><p>Bring in a topic or your notes. We'll help you make sense of it, one idea at a time.</p><button class="button button-light" data-action="new-study">Create a study guide <span>→</span></button></div><div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="art-core">✦</div><div class="float-card card-a">✎ <span>Smart notes</span></div><div class="float-card card-b">◈ <span>Flashcards</span></div><div class="float-card card-c">✓ <span>Quiz time</span></div><div class="art-spark s1">✦</div><div class="art-spark s2">✧</div></div></div>
+        <div class="section-heading"><div><h2>Pick up where you left off</h2><p>Your recent study guides are ready when you are.</p></div><button class="text-button" data-page="library">View library <span>→</span></button></div>
+        <div class="guide-grid" id="recent-guides"></div>
+        <div class="bottom-grid"><div class="panel weekly-panel"><div class="section-heading compact"><div><h3>Your learning rhythm</h3><p>A little progress adds up.</p></div><span class="panel-icon">↗</span></div><div class="weekly-stats"><div><strong id="stat-sessions">0</strong><span>quizzes taken</span></div><div><strong id="stat-average">—</strong><span>average score</span></div><div><strong id="stat-guides">0</strong><span>study guides</span></div></div><div class="mini-bars" id="mini-bars" aria-label="Recent quiz scores"></div><div class="bar-labels"><span>Recent quiz scores</span><span>Last 6</span></div></div><div class="panel prompt-panel"><div class="prompt-icon">✧</div><span class="hero-kicker">A KIND REMINDER</span><h3>Progress is built in the small moments.</h3><p>Even ten minutes with one idea can change what you remember tomorrow.</p><button class="text-button" data-page="study">Open study room <span>→</span></button></div></div>
+        <footer class="footer-note">Made for curious minds <span>✦</span></footer>
+      </section>
+
+      <section class="page" id="page-library"><div class="page-title-row"><div><div class="eyebrow">YOUR MATERIALS</div><h1>My library</h1><p class="lead">Everything you're learning, all in one place.</p></div><button class="button button-primary" data-action="new-study">＋ New study guide</button></div><div class="filter-row"><span id="library-subtitle">Your saved guides</span><label class="search-box"><span>⌕</span><input id="library-search" placeholder="Find a topic" aria-label="Search guides"></label></div><div class="guide-grid library-grid" id="all-guides"></div></section>
+
+      <section class="page" id="page-study"><div class="page-title-row"><div><div class="eyebrow">YOUR PERSONAL STUDY ROOM</div><h1 id="study-title">Let's make it make sense.</h1><p class="lead" id="study-subtitle">Start with a topic, or bring your own notes.</p></div><button class="text-button" data-page="library">← My library</button></div>
+        <div id="study-empty" class="empty-study"><div class="empty-illustration">✦</div><h2>What are you learning today?</h2><p>Paste your notes, upload a document, or search for an introductory background source by topic.</p><div class="input-card"><label for="material-title">Give this study guide a name or topic</label><input id="material-title" maxlength="90" placeholder="e.g. The French Revolution, Biology: Cells…"><label for="material-text">Your study material <span class="muted">(optional if you search for a topic)</span></label><textarea id="material-text" rows="7" placeholder="Paste your notes, class handout text, or a short explainer here…"></textarea><div class="input-bottom"><label class="file-button">↑ <span>Choose a document</span><input id="material-file" type="file" accept=".txt,.md,.csv,.html,.htm,.pdf,.docx,text/plain,text/markdown,text/csv,text/html,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"></label><span class="char-count" id="char-count">0 characters</span></div><div class="file-name" id="file-name"></div><button class="button button-primary create-button" id="create-guide">Build my study guide <span>→</span></button><div class="privacy-note">✦ Files are read in this browser. Topic search sends your query to Wikipedia; no AI API key is used.</div><p class="form-error" id="form-error" role="alert"></p></div></div>
+        <div id="study-workspace" hidden><div class="study-toolbar"><div><span class="status-dot"></span><span>STUDYING</span><small id="source-label"></small></div><button class="text-button" id="back-to-library">← All guides</button></div><div class="study-tabs" role="tablist"><button class="study-tab active" data-tab="notes">Notes</button><button class="study-tab" data-tab="flashcards">Flashcards <span class="tab-count" id="flashcard-count"></span></button><button class="study-tab" data-tab="mindmap">Mind map</button><button class="study-tab" data-tab="tutor">Study helper</button><button class="study-tab" data-tab="videos">Videos</button></div><div class="tab-panel active" id="tab-notes"></div><div class="tab-panel" id="tab-flashcards"></div><div class="tab-panel" id="tab-mindmap"></div><div class="tab-panel" id="tab-tutor"></div><div class="tab-panel" id="tab-videos"></div><div class="quiz-cta"><div><span class="eyebrow">WHEN YOU FEEL READY</span><h3>Want to see what stuck?</h3><p>Your quiz is ready whenever you are. Take it at your own pace.</p></div><button class="button button-primary" id="start-quiz">Take a quiz <span>→</span></button></div></div>
+      </section>
+
+      <section class="page" id="page-progress"><div class="page-title-row"><div><div class="eyebrow">YOUR GROWTH, AT YOUR PACE</div><h1>My progress</h1><p class="lead">A little reflection goes a long way.</p></div></div><div id="progress-content"></div></section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="quiz-modal" aria-hidden="true"><section class="quiz-modal" role="dialog" aria-modal="true" aria-labelledby="quiz-heading"><div id="quiz-running"><div class="quiz-top"><div><span class="eyebrow">YOUR PRACTICE SESSION</span><h2 id="quiz-heading">One question at a time.</h2></div><button class="icon-button" data-action="close-quiz" aria-label="Close quiz">×</button></div><div class="quiz-progress-track"><div id="quiz-progress-fill"></div></div><div class="quiz-meta"><span id="quiz-counter"></span><span id="quiz-topic"></span></div><div class="quiz-question" id="quiz-question"></div><div class="quiz-options" id="quiz-options"></div><div class="quiz-nav"><button class="button button-quiet" id="quiz-prev">← Previous</button><div><button class="button button-quiet" data-action="close-quiz">Exit quiz</button><button class="button button-primary" id="quiz-next">Next question →</button><button class="button button-primary" id="quiz-submit" hidden>Finish quiz ✓</button></div></div></div><div id="quiz-results" hidden></div></section></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
